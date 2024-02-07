@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminController,SallerController};
+use App\Http\Controllers\{AdminController,SallerController, webappController};
 
 // Admin routes
 Route::prefix('admin')->group(function(){
@@ -36,9 +36,11 @@ Route::prefix('saller')->group(function(){
 
 // End of Saller routes
 
-Route::get('/', function () {
-    return view('welcome');
+// Wab app routes
+Route::prefix('/')->group(function(){
+    Route::get('',[webappController::class,'Index'])->name('index');
 });
+// End wab app routes
 
 Route::get('/dashboard', function () {
     return view('dashboard');
