@@ -2,43 +2,70 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminController,SallerController, webappController};
+use App\Http\Controllers\{AdminController, categoryController, SallerController, webappController};
 
 // Admin routes
-Route::prefix('admin')->group(function(){
-    Route::get('/login',[AdminController::class,'Index'])->name('login_form');
-    Route::post('/login/owner',[AdminController::class,'Login'])->name('admin.login');
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminController::class, 'Index'])->name('login_form');
+    Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
 
-    Route::get('/singup',[AdminController::class,'Singup'])->name('admin.singup');
-    Route::post('/singup/owner',[AdminController::class,'Register'])->name('admin.register');
+    Route::get('/singup', [AdminController::class, 'Singup'])->name('admin.singup');
+    Route::post('/singup/owner', [AdminController::class, 'Register'])->name('admin.register');
 
-    Route::middleware('admin')->group(function(){
-        Route::get('/dashboard',[AdminController::class,'Dashboard'])->name('admin.dashboard');
-        Route::get('/logout',[AdminController::class,'Logout'])->name('admin.logout');
+    //Admin middleware routes
+    Route::middleware('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('admin.dashboard');
+        Route::get('/logout', [AdminController::class, 'Logout'])->name('admin.logout');
+
+        //Dashboard routes Group of admin
+        Route::prefix('/dashboard')->group(function () {
+            // Category routes group
+            Route::prefix('/category')->group(function () {
+                Route::get('', [categoryController::class, 'category'])->name('admin.category');
+                Route::post('/add', [categoryController::class, 'categoryStore'])->name('admin.category.add');
+                Route::get('/{id}/status/change/{status}', [categoryController::class, 'changeStatus'])->name('admin.category.status');
+                Route::get('/{id}/edit', [categoryController::class, 'editpage'])->name('admin.category.edit');
+                Route::put('/{id}/update', [categoryController::class, 'updateCategory'])->name('admin.category.update');
+                Route::delete('/{id}/delete', [categoryController::class, 'delete'])->name('admin.category.delete');
+            });
+        });
     });
 });
 
 // End of Admin routes
 
 // Saller routes
-Route::prefix('saller')->group(function(){
-    Route::get('/login',[SallerController::class,'Index'])->name('saller_login_form');
-    Route::post('/login/owner',[SallerController::class,'Login'])->name('saller.login');
+Route::prefix('saller')->group(function () {
+    Route::get('/login', [SallerController::class, 'Index'])->name('saller_login_form');
+    Route::post('/login/owner', [SallerController::class, 'Login'])->name('saller.login');
 
-    Route::get('/singup',[SallerController::class,'Singup'])->name('saller.singup');
-    Route::post('/singup/owner',[SallerController::class,'Register'])->name('saller.register');
+    Route::get('/singup', [SallerController::class, 'Singup'])->name('saller.singup');
+    Route::post('/singup/owner', [SallerController::class, 'Register'])->name('saller.register');
 
-    Route::middleware('saller')->group(function(){
-        Route::get('/dashboard',[SallerController::class,'Dashboard'])->name('saller.dashboard');
-        Route::get('/logout',[SallerController::class,'Logout'])->name('saller.logout');
+    Route::middleware('saller')->group(function () {
+        Route::get('/dashboard', [SallerController::class, 'Dashboard'])->name('saller.dashboard');
+        Route::get('/logout', [SallerController::class, 'Logout'])->name('saller.logout');
+
+        //Dashboard routes Group of saller
+        Route::prefix('/dashboard')->group(function () {
+            // Category routes group
+            Route::prefix('/category')->group(function () {
+                Route::get('', [categoryController::class, 'category'])->name('admin.category');
+                Route::post('/add', [categoryController::class, 'categoryStore'])->name('admin.category.add');
+                Route::get('/{id}/status/change/{status}', [categoryController::class, 'changeStatus'])->name('admin.category.status');
+                Route::get('/{id}/edit', [categoryController::class, 'editpage'])->name('admin.category.edit');
+                Route::put('/{id}/update', [categoryController::class, 'updateCategory'])->name('admin.category.update');
+                Route::delete('/{id}/delete', [categoryController::class, 'delete'])->name('admin.category.delete');
+            });
+        });
     });
 });
 
 // End of Saller routes
 
 // Wab app routes
-Route::prefix('/')->group(function(){
-    Route::get('',[webappController::class,'Index'])->name('index');
+Route::prefix('/')->group(function () {
+    Route::get('', [webappController::class, 'Index'])->name('index');
 });
 // End wab app routes
 
@@ -54,4 +81,4 @@ Route::middleware('auth')->group(function () {
 });
 // End Normal user route
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

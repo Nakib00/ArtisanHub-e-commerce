@@ -7,7 +7,7 @@
     <div id="wrapper">
 
         {{--  Include Navigation  --}}
-        @include('include.navigation')
+        @include('include.adminNavigation')
 
 
         {{--  <!-- ============================================================== -->  --}}
