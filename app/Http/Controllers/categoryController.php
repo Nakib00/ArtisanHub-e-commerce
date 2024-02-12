@@ -16,6 +16,12 @@ class categoryController extends Controller
         return view('admin.category.category', ['categorys' => $categorys]);
     }
 
+    public function categorysaller()
+    {
+        $categorys = category::all();
+        return view('saller.category.category', ['categorys' => $categorys]);
+    }
+
     //Add new category
     public function categoryStore(Request $request)
     {

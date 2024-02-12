@@ -50,12 +50,12 @@ Route::prefix('saller')->group(function () {
         Route::prefix('/dashboard')->group(function () {
             // Category routes group
             Route::prefix('/category')->group(function () {
-                Route::get('', [categoryController::class, 'category'])->name('admin.category');
-                Route::post('/add', [categoryController::class, 'categoryStore'])->name('admin.category.add');
-                Route::get('/{id}/status/change/{status}', [categoryController::class, 'changeStatus'])->name('admin.category.status');
+                Route::get('', [categoryController::class, 'categorysaller'])->name('saller.category');
+                Route::post('/add', [categoryController::class, 'categoryStore'])->name('saller.category.add');
+                Route::get('/{id}/status/change/{status}', [categoryController::class, 'changeStatus'])->name('saller.category.status');
                 Route::get('/{id}/edit', [categoryController::class, 'editpage'])->name('admin.category.edit');
-                Route::put('/{id}/update', [categoryController::class, 'updateCategory'])->name('admin.category.update');
-                Route::delete('/{id}/delete', [categoryController::class, 'delete'])->name('admin.category.delete');
+                Route::put('/{id}/update', [categoryController::class, 'updateCategory'])->name('saller.category.update');
+                Route::delete('/{id}/delete', [categoryController::class, 'delete'])->name('saller.category.delete');
             });
         });
     });

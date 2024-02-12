@@ -115,7 +115,6 @@
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="../assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ml-1">
                         {{ Auth::guard('sallers')->user()->name }} <i class="mdi mdi-chevron-down"></i>
                     </span>
@@ -179,8 +178,6 @@
 
         <!-- User box -->
         <div class="user-box text-center">
-            <img src="{{ asset('adminAssets/images/users/user-1.jpg') }}" alt="user-img" title="Mat Helme"
-                class="rounded-circle avatar-md">
             <div class="dropdown">
                 <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
                     data-toggle="dropdown">{{ Auth::guard('sallers')->user()->name }}</a>
@@ -225,7 +222,7 @@
                     <div class="collapse" id="sidebarEcommerce">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('admin.category')}}">Category</a>
+                                <a href="{{route('saller.category')}}">Category</a>
                             </li>
                             <li>
                                 <a href="ecommerce-product-detail.html">Product Detail</a>
