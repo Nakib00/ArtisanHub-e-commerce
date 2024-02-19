@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminController, categoryController, SallerController, webappController};
+use App\Http\Controllers\{AdminController, categoryController, SallerController, webappController,sallerInfoController, shopController};
 
 // Admin routes
 Route::prefix('admin')->group(function () {
@@ -57,6 +57,12 @@ Route::prefix('saller')->group(function () {
                 Route::put('/{id}/update', [categoryController::class, 'updateCategory'])->name('saller.category.update');
                 Route::delete('/{id}/delete', [categoryController::class, 'delete'])->name('saller.category.delete');
             });
+            // shop routes group
+            Route::prefix('/shop')->group(function () {
+                Route::resource('shops', shopController::class);
+            });
+
+            Route::resource('sallerinfo', sallerInfoController::class);
         });
     });
 });

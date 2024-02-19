@@ -1,7 +1,7 @@
 @extends('layouts.sallerDashboard')
 
 @section('title')
-    <title>Artisan Hub | Admin</title>
+    <title>Artisan Hub | Saller</title>
 @endsection
 
 @section('content')

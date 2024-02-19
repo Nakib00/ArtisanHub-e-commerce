@@ -126,7 +126,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{ route('sallerinfo.index') }}" class="dropdown-item notify-item">
                         <i class="fe-user"></i>
                         <span>My Account</span>
                     </a>
@@ -184,7 +184,7 @@
                 <div class="dropdown-menu user-pro-dropdown">
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{ route('sallerinfo.index') }}" class="dropdown-item notify-item">
                         <i class="fe-user mr-1"></i>
                         <span>My Account</span>
                     </a>
@@ -223,6 +223,9 @@
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{route('saller.category')}}">Category</a>
+                            </li>
+                            <li>
+                                <a href="{{route('shops.index')}}">Shop</a>
                             </li>
                             <li>
                                 <a href="ecommerce-product-detail.html">Product Detail</a>
